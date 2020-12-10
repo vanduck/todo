@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'main.templatetags',
     'todo_item'
 ]
 
@@ -81,7 +81,7 @@ DATABASES = {
         "HOST": "127.0.0.1",
         "NAME": "todo",
         "USER": "postgres",
-        "PASSWORD": "123",
+        "PASSWORD": "postgress2020",
         "PORT": 5432
     }
 }
