@@ -1,8 +1,7 @@
 from django import template
-
+from todo.settings import DIV_COUNT
 
 register = template.Library()
-DIV_COUNT = 6
 
 
 @register.filter
