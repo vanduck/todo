@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from todo_item.models import ListItem
+from main.models import ListModel
 
+"""
 items = {
     'lists': [
         {'name': 'Купить шариков', 'is_done': True},
@@ -9,8 +12,18 @@ items = {
     'user_name': 'Mark',
     'list_name': 'Список дел'
 }
+"""
 
 
 def item_view(request):
-    context = items
+    list_ = ListModel.objects.get(id=1)
+    list_items = ListItem.objects.filter(
+        list_model_id = list_
+    )
+
+    context = {
+        'lists': list_items,
+        'list_name': list_.name,
+        'user_name': request.user.username
+    }
     return render(request, 'list.html', context)
