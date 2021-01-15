@@ -6,7 +6,6 @@ board_ = [
     ['T', 'F', 'Z', 'E', 'L', 'E', 'J'],
     ['A', 'I', 'W', 'O', 'D', 'J', 'A']
 ]
-# ['C', 'A', 'T', 'F', 'Z', 'K', 'L', 'B', 'G', 'E', 'S', 'E', 'A', 'U', 'I', 'T', 'A', 'E', 'P', 'F', 'M'
 
 
 def function(board, word):
@@ -20,7 +19,7 @@ def function(board, word):
             index_of_elem = 0
             continue
         else:
-            points = [[]] #тут хранятся координаты букв и номер буквы в заданом слове (номер буквы, point[x], point[x][y])
+            points = [[]] #тут хранятся координаты букв и номер буквы в заданом слове [[(номер буквы, point[x], point[y])]]
             points[0].append((0, index_of_elem, i))# добавляем координату первой буквы
             if check_around(0, 0, 1, points, board, word):
                 return True
@@ -39,6 +38,8 @@ def check_around(i, j, word_index, points, board, word):
 
         if (y + 1) < len(board) and board[y + 1][x] == word[word_index]:
             if points[i][j][0] == word_index:
+                # на каждый новый "путь" создается новый список с координатами,
+                # что бы в дальнейшем его проверить
                 points.append(points[i][:len(points[i]) - 1])
                 points[-1].append((word_index, x, y + 1))
             else:
@@ -69,12 +70,12 @@ def check_around(i, j, word_index, points, board, word):
                 points[i].append((word_index, x - 1, y))
                 j += 1
 
-        if len(points[i]) > old_len_i:
+        if len(points[i]) > old_len_i:#двигаемся по текущему "пути"
             word_index += 1
             j = len(points[i]) - 1
             return check_around(i, j, word_index, points, board, word)
 
-        elif len(points) > old_len or i + 1 < len(points):
+        elif len(points) > old_len or i + 1 < len(points):#переходим на новый "путь"
             j = len(points[i + 1]) - 1
             word_index = points[i + 1][j][0] + 1
             return check_around(i + 1, j, word_index, points, board, word)
