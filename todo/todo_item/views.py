@@ -15,8 +15,8 @@ items = {
 """
 
 
-def item_view(request):
-    list_ = ListModel.objects.get(id=1)
+def item_view(request, pk):
+    list_ = ListModel.objects.select_related('user').get(id=pk)
     list_items = ListItem.objects.filter(
         list_model_id = list_
     )
