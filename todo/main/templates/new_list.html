@@ -1,0 +1,18 @@
+{% extends 'create_master.html' %}
+
+{% block title %}
+    <title>Новый список</title>
+{% endblock %}
+
+{% block header %}
+    <div class="auth__column_right_form__header">
+        Новый список
+    </div>
+{% endblock %}
+
+{% block form %}
+    <form class="auth_form_class" action="{% url 'main:create' %}" id="auth_form" method="POST">
+        {% csrf_token %}
+        {{ form.name }}
+    </form>
+{% endblock %}

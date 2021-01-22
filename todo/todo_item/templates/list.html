@@ -5,9 +5,15 @@
     <title>Список</title>
 {% endblock %}
 
- {% block name_list %}
+{% block name_list %}
     <div class="table-data_table-header-item-1">{{ list_name }}</div>
- {% endblock %}
+{% endblock %}
+
+{% block create %}
+    <a class="add_new_list" href="{% url 'todo_item:create' pk=pk %}">
+         <div class="header__button-create-bundle">+</div>
+    </a>
+{% endblock %}
 
 {% block body %}
             {% for row in lists %}
@@ -21,7 +27,7 @@
                 </div>
                 <div class="buttons">
                     <div class="table-data-two_table-icon">
-                        <a href='#'>
+                        <a href='{% url 'todo_item:edit' pk=row.id %}'>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -30,11 +36,11 @@
                             </svg>
                         </a>
                     </div>
-                    {% if row.date %}
+                    {% if row.expare_date %}
                         <a href="#">
-                        <div class="calendarik">{{ row.date }}</div>
+                        <div class="calendarik">{{ row.expare_date }}</div>
                         </a>
-                        {% else %}
+                    {% else %}
                         <div class="calendarik">
                             <a href='#'>
                                 <img src="/static/images/calendar.png" alt="calendar" width="26px" height="24px">
@@ -42,7 +48,7 @@
                         </div>
                     {% endif %}
                     <div class="table-row_table_icon">
-                        <a class="delete_button" href="#">
+                        <a class="delete_button" href="{% url 'todo_item:delete' pk=row.id %}">
                             <svg width="20" height="22" viewBox="0 0 20 22" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -54,11 +60,6 @@
                 </div>
             </div>
             {% endfor %}
-         {% for _ in lists|print_items %}
-             <div class="table-data__table-row">
-                <div class="table-row_table_cell-1"></div>
-             </div>
-        {% endfor %}
 {% endblock %}
 
 {% block empty %}
