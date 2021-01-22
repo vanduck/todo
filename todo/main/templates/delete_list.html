@@ -1,0 +1,18 @@
+{% extends 'create_master.html' %}
+
+{% block title %}
+    <title>Удалить список?</title>
+{% endblock %}
+
+{% block header %}
+    <div class="auth__column_right_form__header">
+        Удалить список?
+    </div>
+{% endblock %}
+
+{% block form %}
+    <form class="auth_form_class" action="{% url 'main:delete' pk %}" id="auth_form" method="POST">
+        {% csrf_token %}
+        {{ form.name }}
+    </form>
+{% endblock %}

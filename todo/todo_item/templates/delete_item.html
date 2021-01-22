@@ -1,0 +1,30 @@
+{% extends 'create_master.html' %}
+
+{% block title %}
+    <title>Удаление элемента списка</title>
+{% endblock %}
+
+{% block header %}
+    <div class="auth__column_right_form__header">
+        Удаление элемента списка
+    </div>
+{% endblock %}
+
+{% block form %}
+    <form class="auth_form_class" action="{% url 'todo_item:delete' pk %}" id="auth_form" method="POST">
+        {% csrf_token %}
+        {{ form.name }}
+        {{ form.expare_date }}
+
+        {% if form.errors %}
+            {{ form.non_field_errors }}
+        {% endif %}
+
+    </form>
+{% endblock %}
+
+{% block cancel_form %}
+    <a href="{% url 'todo_item:item' list_model_id %}">
+        <div class="auth__button_submit" id="login-cancel-btn" ><span>&#9587</span></div>
+    </a>
+{% endblock %}

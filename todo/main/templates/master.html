@@ -12,7 +12,7 @@
 
     {% endblock %}
 
-    <link rel="shortcut icon" type="image/png" href="imges/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/imges/favicon.png"/>
     <link rel="stylesheet" href="/static/css/index.css">
 </head>
 
@@ -48,9 +48,10 @@
                 {% block name_list %}
 
                 {% endblock %}
-                <a class="add_new_list" href="/create/">
-                     <div class="header__button-create-bundle">+</div>
-                </a>
+
+                {% block create %}
+
+                {% endblock %}
 
             </div>
 
